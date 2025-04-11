@@ -1,7 +1,8 @@
 import yaml
 
 from bonus_service.app.core.datetime_utils import is_weekend_or_holiday
-from bonus_service.app.domain.models import AppliedRule, BonusCalculationRequest, BonusCalculationResult
+from bonus_service.app.domain.models import AppliedRule, BonusCalculationRequest, BonusCalculationResult, \
+    CustomerStatusEnum
 from bonus_service.app.domain.rules import BonusRule
 
 
@@ -24,7 +25,7 @@ class RuleFactory:
             def _apply_rule(self, request, current_bonus) -> (float, AppliedRule):
                 if condition == "is_weekend_or_holiday" and not is_weekend_or_holiday(request.timestamp):
                     return current_bonus, None
-                if condition == "is_vip" and request.customer_status.lower() != "vip":
+                if condition == "is_vip" and request.customer_status.lower() != CustomerStatusEnum.vip:
                     return current_bonus, None
                 multiplier = cfg.get("multiplier", 1)
                 bonus = current_bonus * multiplier
