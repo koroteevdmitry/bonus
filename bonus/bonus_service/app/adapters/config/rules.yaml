@@ -1,0 +1,20 @@
+rules:
+  - name: "base_rate"
+    type: "base"
+    config:
+      per_amount: 10
+      bonus: 1
+
+  - name: "holiday_bonus"
+    type: "multiplier"
+    condition: "is_weekend_or_holiday"
+    config:
+      multiplier: 2
+    order: 1
+
+  - name: "vip_boost"
+    type: "multiplier"
+    condition: "is_vip"
+    config:
+      multiplier: 1.4
+    order: 2

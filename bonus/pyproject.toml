@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "bonus_service"
+version = "0.1.0"
+description = "Flexible bonus calculation system"
+authors = ["Koroteev Dmitry"]
+packages = [{ include = "bonus_service" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.110.0"
+uvicorn = "^0.29.0"
+pyyaml = "^6.0"
+holidays = "^0.26"
+dependency-injector = "^4.41.0"
+pydantic = "^2.6.0"
+black = "^25.1.0"
+isort = "^6.0.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 120
+target-version = ['py310']
+include = '\.pyi?$'
+exclude = '''
+^/(
+  (
+      \.data
+    | \.venv
+  )
+)
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 120
+skip = ["versions", ".venv"]
